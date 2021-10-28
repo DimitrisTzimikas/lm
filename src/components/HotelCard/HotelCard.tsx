@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 /* Local Files */
 import {HotelType} from '../../types';
-import ImageList from './ImageList';
-import HotelTitle from './Title';
-import HotelLocation from './Location';
-import UserRating from './UserRating';
-import CheckInCheckOut from './CheckInCheckout';
-import Price from './Price';
-import Contact from './Contact';
+import ImageList from './CardComponents/ImageList';
+import HotelTitle from './CardComponents/Title';
+import HotelLocation from './CardComponents/Location';
+import UserRating from './CardComponents/UserRating';
+import CheckInCheckOut from './CardComponents/CheckInCheckout';
+import Price from './CardComponents/Price';
+import Contact from './CardComponents/Contact';
 
 const HotelCard = ({hotel}: {hotel: HotelType}) => {
   return (
