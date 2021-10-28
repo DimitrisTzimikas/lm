@@ -10,7 +10,7 @@ const ImageList = ({photos}: {photos: string[]}) => {
     <FlatList
       data={photos}
       renderItem={renderItem}
-      keyExtractor={(item: any, index: number) => `${index}-${item}`}
+      keyExtractor={(item: string, index: number) => `${index}-${item}`}
       showsVerticalScrollIndicator={false}
       horizontal={true}
     />
