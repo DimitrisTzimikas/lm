@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 /* Local Files */
 import HotelCard from './components/HotelCard';
+import {HotelType} from './types';
 
 const API_ENDPOINT =
   'https://run.mocky.io/v3/eef3c24d-5bfd-4881-9af7-0b404ce09507';
@@ -31,7 +32,7 @@ export default function App() {
       });
   };
 
-  const renderItem = ({item}: any) => {
+  const renderItem = ({item}: {item: HotelType}) => {
     return <HotelCard hotel={item} />;
   };
 
@@ -43,7 +44,7 @@ export default function App() {
         <FlatList
           data={hotels}
           renderItem={renderItem}
-          keyExtractor={hotel => hotel.id}
+          keyExtractor={hotel => hotel.id.toString()}
           showsVerticalScrollIndicator={false}
         />
       )}

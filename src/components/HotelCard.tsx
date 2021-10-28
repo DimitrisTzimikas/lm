@@ -2,8 +2,9 @@ import React from 'react';
 import {StyleSheet, SafeAreaView, Text} from 'react-native';
 /* Local Files */
 import {HotelType} from '../types';
+import ImageList from './ImageList';
 
-const HotelCard = ({hotel}: HotelType) => {
+const HotelCard = ({hotel}: {hotel: HotelType}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>{hotel.name}</Text>
@@ -24,7 +25,7 @@ const HotelCard = ({hotel}: HotelType) => {
       <Text style={styles.text}>{hotel.contact.phoneNumber}</Text>
       <Text style={styles.text}>{hotel.contact.email}</Text>
 
-      <Text style={styles.text}>{hotel.gallery[0]}</Text>
+      <ImageList photos={hotel.gallery} />
 
       <Text style={styles.text}>{hotel.price}</Text>
       <Text style={styles.text}>{hotel.currency}</Text>
