@@ -6,7 +6,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 /* Local Files */
-import HotelCard from './components/HotelCard';
+import HotelCard from './components/HotelCard/HotelCard';
 import {HotelType} from './types';
 
 const API_ENDPOINT =

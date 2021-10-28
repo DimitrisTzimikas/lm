@@ -1,20 +1,25 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, Text} from 'react-native';
 /* Local Files */
-import {HotelType} from '../types';
+import {HotelType} from '../../types';
 import ImageList from './ImageList';
+import HotelTitle from './Title';
+import HotelLocation from './Location';
 
 const HotelCard = ({hotel}: {hotel: HotelType}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>{hotel.name}</Text>
+      <HotelTitle name={hotel.name} />
+
       <Text style={styles.text}>{hotel.stars}</Text>
       <Text style={styles.text}>{hotel.userRating}</Text>
 
-      <Text style={styles.text}>{hotel.location.address}</Text>
-      <Text style={styles.text}>{hotel.location.city}</Text>
-      <Text style={styles.text}>{hotel.location.latitude}</Text>
-      <Text style={styles.text}>{hotel.location.longitude}</Text>
+      <HotelLocation
+        address={hotel.location.address}
+        city={hotel.location.city}
+        latitude={hotel.location.latitude}
+        longitude={hotel.location.longitude}
+      />
 
       <Text style={styles.text}>{hotel.checkIn.from}</Text>
       <Text style={styles.text}>{hotel.checkIn.to}</Text>
@@ -35,15 +40,15 @@ const HotelCard = ({hotel}: {hotel: HotelType}) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#F5F0F6',
+
     marginVertical: 10,
     marginHorizontal: 20,
 
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-
-    borderRadius: 8,
-    borderColor: 'black',
-    borderWidth: 0.2,
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
+    borderTopLeftRadius: 18,
+    borderTopRightRadius: 18,
 
     shadowColor: '#000',
     shadowOffset: {
