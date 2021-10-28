@@ -1,20 +1,59 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  SafeAreaView,
+} from 'react-native';
 
-const App = () => {
+import HotelCard from './components/HotelCard';
+
+const API_ENDPOINT =
+  'https://run.mocky.io/v3/eef3c24d-5bfd-4881-9af7-0b404ce09507';
+
+export default function App() {
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [hotels, setHotels] = useState<any>([]);
+
+  useEffect(() => {
+    loadHotels();
+  }, []);
+
+  const loadHotels = () => {
+    fetch(API_ENDPOINT)
+      .then(response => response.json())
+      .then((data: any) => {
+        setHotels(data);
+      })
+      .catch(error => console.error(error))
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const renderItem = ({item}: any) => {
+    return <HotelCard hotel={item} />;
+  };
+
   return (
-    <SafeAreaView style={styles.saveAreaView}>
-      <View>
-        <Text>Home Page</Text>
-      </View>
+    <SafeAreaView style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <FlatList
+          data={hotels}
+          renderItem={renderItem}
+          keyExtractor={hotel => hotel.id}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  saveAreaView: {
+  container: {
     flex: 1,
+    justifyContent: 'center',
   },
 });
-
-export default App;
