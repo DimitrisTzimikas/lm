@@ -5,14 +5,14 @@ import {HotelType} from '../../types';
 import ImageList from './ImageList';
 import HotelTitle from './Title';
 import HotelLocation from './Location';
+import UserRating from './UserRating';
 
 const HotelCard = ({hotel}: {hotel: HotelType}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <HotelTitle name={hotel.name} />
+      <HotelTitle name={hotel.name} stars={hotel.stars} />
 
-      <Text style={styles.text}>{hotel.stars}</Text>
-      <Text style={styles.text}>{hotel.userRating}</Text>
+      <UserRating rating={hotel.userRating} />
 
       <HotelLocation
         address={hotel.location.address}

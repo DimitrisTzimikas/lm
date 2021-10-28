@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-const HotelTitle = ({name}: {name: string}) => {
+const HotelTitle = ({name, stars}: {name: string; stars: number}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{name}</Text>
+      <Text style={styles.title}>
+        {name}: {stars} ★
+      </Text>
     </View>
   );
 };
@@ -12,7 +14,8 @@ const HotelTitle = ({name}: {name: string}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
     margin: -1,
     borderTopRightRadius: 18,
     borderTopLeftRadius: 18,
