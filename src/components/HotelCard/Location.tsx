@@ -57,10 +57,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     marginHorizontal: 5,
 
-    borderTopColor: 'black',
     borderBottomColor: 'black',
-
-    borderTopWidth: 1,
     borderBottomWidth: 1,
   },
   horizontalAlign: {
@@ -73,12 +70,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   textAddress: {
-    fontSize: 15,
+    fontSize: 17,
     color: '#2d23be',
     textDecorationLine: 'underline',
   },
   text: {
-    fontSize: 15,
+    fontSize: 17,
   },
 });
 

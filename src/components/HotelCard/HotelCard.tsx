@@ -1,11 +1,14 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView, Text} from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
 /* Local Files */
 import {HotelType} from '../../types';
 import ImageList from './ImageList';
 import HotelTitle from './Title';
 import HotelLocation from './Location';
 import UserRating from './UserRating';
+import CheckInCheckOut from './CheckInCheckout';
+import Price from './Price';
+import Contact from './Contact';
 
 const HotelCard = ({hotel}: {hotel: HotelType}) => {
   return (
@@ -21,19 +24,21 @@ const HotelCard = ({hotel}: {hotel: HotelType}) => {
         longitude={hotel.location.longitude}
       />
 
-      <Text style={styles.text}>{hotel.checkIn.from}</Text>
-      <Text style={styles.text}>{hotel.checkIn.to}</Text>
+      <CheckInCheckOut
+        checkInFrom={hotel.checkIn.from}
+        checkInTo={hotel.checkIn.to}
+        checkOutFrom={hotel.checkOut.from}
+        checkOutTo={hotel.checkOut.to}
+      />
 
-      <Text style={styles.text}>{hotel.checkOut.from}</Text>
-      <Text style={styles.text}>{hotel.checkOut.to}</Text>
-
-      <Text style={styles.text}>{hotel.contact.phoneNumber}</Text>
-      <Text style={styles.text}>{hotel.contact.email}</Text>
+      <Contact
+        phoneNumber={hotel.contact.phoneNumber}
+        email={hotel.contact.email}
+      />
 
       <ImageList photos={hotel.gallery} />
 
-      <Text style={styles.text}>{hotel.price}</Text>
-      <Text style={styles.text}>{hotel.currency}</Text>
+      <Price price={hotel.price} currency={hotel.currency} />
     </SafeAreaView>
   );
 };
