@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, Text} from 'react-native';
+/* Local Files */
 import {HotelType} from '../types';
 
 const HotelCard = ({hotel}: HotelType) => {

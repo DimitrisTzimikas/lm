@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-
+/* Local Files */
 import HotelCard from './components/HotelCard';
 
 const API_ENDPOINT =
