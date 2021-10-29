@@ -4,17 +4,19 @@ import {
   FlatList,
   ActivityIndicator,
   SafeAreaView,
+  Button,
 } from 'react-native';
 /* Local Files */
 import HotelCard from './components/HotelCard/HotelCard';
-import {HotelType} from './types';
+import {HotelType} from './types/types';
+import {compareBaseOnProperty} from './util/compare';
 
 const API_ENDPOINT =
   'https://run.mocky.io/v3/eef3c24d-5bfd-4881-9af7-0b404ce09507';
 
 export default function App() {
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [hotels, setHotels] = useState<any>([]);
+  const [hotels, setHotels] = useState<HotelType[]>([]);
 
   useEffect(() => {
     loadHotels();
@@ -32,12 +34,19 @@ export default function App() {
       });
   };
 
+  const sort = () => {
+    setHotels((prevData: HotelType[]) => [
+      ...prevData.sort(compareBaseOnProperty('price')),
+    ]);
+  };
+
   const renderItem = ({item}: {item: HotelType}) => {
     return <HotelCard hotel={item} />;
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Button title={'Sort'} onPress={sort} />
       {isLoading ? (
         <ActivityIndicator size="large" />
       ) : (

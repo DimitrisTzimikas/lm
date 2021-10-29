@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 /* Local Files */
-import {HotelType} from '../../types';
+import {HotelType} from '../../types/types';
 import ImageList from './CardComponents/ImageList';
 import HotelTitle from './CardComponents/Title';
 import HotelLocation from './CardComponents/Location';
