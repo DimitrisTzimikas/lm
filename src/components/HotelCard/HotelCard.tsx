@@ -45,6 +45,7 @@ const HotelCard = ({hotel}: {hotel: HotelType}) => {
 
 const styles = StyleSheet.create({
   container: {
+    overflow: 'hidden',
     backgroundColor: '#F5F0F6',
 
     marginVertical: 10,
