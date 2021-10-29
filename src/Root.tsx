@@ -4,23 +4,31 @@ import {
   FlatList,
   ActivityIndicator,
   SafeAreaView,
-  Button,
 } from 'react-native';
 /* Local Files */
 import HotelCard from './components/HotelCard/HotelCard';
+import RadioButtons from './components/RadioButtons';
 import {HotelType} from './types/types';
 import {compareBaseOnProperty} from './util/compare';
 
 const API_ENDPOINT =
   'https://run.mocky.io/v3/eef3c24d-5bfd-4881-9af7-0b404ce09507';
+const options = ['name', 'price', 'stars', 'userRating'];
 
 export default function App() {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [hotels, setHotels] = useState<HotelType[]>([]);
+  const [selectedOption, setSelectedOption] = useState<string>(options[0]);
 
   useEffect(() => {
     loadHotels();
   }, []);
+
+  useEffect(() => {
+    setHotels((prevData: HotelType[]) => [
+      ...prevData.sort(compareBaseOnProperty(selectedOption)),
+    ]);
+  }, [selectedOption]);
 
   const loadHotels = () => {
     fetch(API_ENDPOINT)
@@ -34,28 +42,28 @@ export default function App() {
       });
   };
 
-  const sort = () => {
-    setHotels((prevData: HotelType[]) => [
-      ...prevData.sort(compareBaseOnProperty('price')),
-    ]);
-  };
-
   const renderItem = ({item}: {item: HotelType}) => {
     return <HotelCard hotel={item} />;
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Button title={'Sort'} onPress={sort} />
       {isLoading ? (
         <ActivityIndicator size="large" />
       ) : (
-        <FlatList
-          data={hotels}
-          renderItem={renderItem}
-          keyExtractor={hotel => hotel.id.toString()}
-          showsVerticalScrollIndicator={false}
-        />
+        <>
+          <RadioButtons
+            options={options}
+            option={selectedOption}
+            setOption={(value: string) => setSelectedOption(value)}
+          />
+          <FlatList
+            data={hotels}
+            renderItem={renderItem}
+            keyExtractor={hotel => hotel.id.toString()}
+            showsVerticalScrollIndicator={false}
+          />
+        </>
       )}
     </SafeAreaView>
   );
