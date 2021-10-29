@@ -9,5 +9,5 @@ Also user can see hotel location and filter the list.
 2. `cd ios`
 3. `pod install`
 4. `cd ..`
-5. `yarn ios or yarn android
+5. `yarn ios` or `yarn android`
 6. `yarn start`
